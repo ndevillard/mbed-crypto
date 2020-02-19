@@ -1,0 +1,34 @@
+This directory holds experiments around crypto hardware support.
+Not meant for actual use in production.
+
+-----------
+
+# Objective
+Provide a PSA Crypto implementation running in the secure world.
+The top-level API should be available for other secure-world applications.
+Crypto routines running underneath could possibly come from several
+sources:
+
+- Pure software implementations, optimized for legibility, or speed, or
+  size, or formal proofs
+- Software implementations making use of processor crypto instructions
+- Based on hardware acceleration modules
+- Outsourcing all or part of the calls to external secure elements
+
+The build system should allow users to cherry-pick the version they want to
+compile.
+
+# Key Management
+
+# Extensions
+This is only the crypto-core. In order to export crypto services to the
+normal world, an additional layer is needed to handle communication and
+message passing between secure and normal worlds. This layer will be highly
+dependent on the interface layer between the two worlds and left for later
+versions.
+
+
+
+
+
+
