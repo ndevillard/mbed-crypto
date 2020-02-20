@@ -1,0 +1,10 @@
+This directory contains all top-level PSA functions.
+In general these do not perform any actual crypto but re-direct to
+wherever the fun actually takes place: behind the NSPE/SPE wall, in a
+secure element, in a crypto hardware accelerator, or by picking one of
+possibly several candidate software implementations.
+
+It is not yet clear whether those functions could be automatically generated
+at build time.
+
+
