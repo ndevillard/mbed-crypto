@@ -33,6 +33,8 @@ psa_status_t psa_aead_decrypt(psa_key_handle_t handle,
 
 psa_aead_operation_t psa_aead_operation_init(void)
 {
+    psa_aead_operation_t r;
+    return r;
 }
 
 

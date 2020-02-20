@@ -1,0 +1,2 @@
+source "alt/arm/mbedtls/Kconfig"
+source "alt/vendor/accel/Kconfig"

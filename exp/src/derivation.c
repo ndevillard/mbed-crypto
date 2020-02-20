@@ -3,7 +3,8 @@
 
 psa_key_derivation_operation_t psa_key_derivation_operation_init(void)
 {
-    return ;
+    psa_key_derivation_operation_t r;
+    return r;
 }
 
 psa_status_t psa_key_derivation_setup(psa_key_derivation_operation_t * operation,

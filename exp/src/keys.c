@@ -3,7 +3,8 @@
 
 psa_key_attributes_t psa_key_attributes_init(void)
 {
-    return ;
+    psa_key_attributes_t r;
+    return r;
 }
 
 void psa_set_key_id(psa_key_attributes_t * attributes,
@@ -20,10 +21,14 @@ void psa_set_key_lifetime(psa_key_attributes_t * attributes,
 
 psa_key_id_t psa_get_key_id(const psa_key_attributes_t * attributes)
 {
+    psa_key_id_t r;
+    return r;
 }
 
 psa_key_lifetime_t psa_get_key_lifetime(const psa_key_attributes_t * attributes)
 {
+    psa_key_lifetime_t r;
+    return r;
 }
 
 void psa_set_key_usage_flags(psa_key_attributes_t * attributes,
@@ -34,6 +39,8 @@ void psa_set_key_usage_flags(psa_key_attributes_t * attributes,
 
 psa_key_usage_t psa_get_key_usage_flags(const psa_key_attributes_t * attributes)
 {
+    psa_key_usage_t r;
+    return r;
 }
 
 void psa_set_key_algorithm(psa_key_attributes_t * attributes,
@@ -44,6 +51,8 @@ void psa_set_key_algorithm(psa_key_attributes_t * attributes,
 
 psa_algorithm_t psa_get_key_algorithm(const psa_key_attributes_t * attributes)
 {
+    psa_algorithm_t r;
+    return r;
 }
 
 void psa_set_key_type(psa_key_attributes_t * attributes,
@@ -60,10 +69,13 @@ void psa_set_key_bits(psa_key_attributes_t * attributes,
 
 psa_key_type_t psa_get_key_type(const psa_key_attributes_t * attributes)
 {
+    psa_key_type_t r;
+    return r;
 }
 
 size_t psa_get_key_bits(const psa_key_attributes_t * attributes)
 {
+    return -1;
 }
 
 psa_status_t psa_get_key_attributes(psa_key_handle_t handle,

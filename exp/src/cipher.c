@@ -25,6 +25,8 @@ psa_status_t psa_cipher_decrypt(psa_key_handle_t handle,
 
 psa_cipher_operation_t psa_cipher_operation_init(void)
 {
+    psa_cipher_operation_t r;
+    return r;
 }
 
 psa_status_t psa_cipher_encrypt_setup(psa_cipher_operation_t * operation,
@@ -78,4 +80,3 @@ psa_status_t psa_cipher_abort(psa_cipher_operation_t * operation)
 {
     return PSA_SUCCESS;
 }
-

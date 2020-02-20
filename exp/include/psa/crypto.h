@@ -2,6 +2,9 @@
 #ifndef _PSA_CRYPTO_H_
 #define _PSA_CRYPTO_H_
 
+#include <stddef.h>
+#include <stdint.h>
+
 /**
  * Typedef
  */
@@ -12,6 +15,14 @@ typedef struct psa_mac_operation_s psa_mac_operation_t;
 typedef struct psa_cipher_operation_s psa_cipher_operation_t;
 typedef struct psa_aead_operation_s psa_aead_operation_t;
 typedef struct psa_key_derivation_s psa_key_derivation_operation_t;
+
+
+struct psa_key_attributes_s {};
+struct psa_hash_operation_s {};
+struct psa_mac_operation_s {};
+struct psa_cipher_operation_s {};
+struct psa_aead_operation_s {};
+struct psa_key_derivation_s {};
 
 typedef int32_t psa_status_t;
 #define PSA_SUCCESS  ((psa_status_t)0)
@@ -188,7 +199,9 @@ typedef uint16_t psa_key_derivation_step_t;
 #define PSA_KEY_DERIVATION_INPUT_SALT  ((psa_key_derivation_step_t)0x0202)
 #define PSA_KEY_DERIVATION_INPUT_INFO  ((psa_key_derivation_step_t)0x0203)
 #define PSA_KEY_DERIVATION_INPUT_SEED  ((psa_key_derivation_step_t)0x0204)
-#define PSA_HASH_SIZE(alg)  /* <IMPDEF expression> */
+#define PSA_HASH_SIZE(alg)  \
+    ((alg == PSA_ALG_SHA_256) ? 32 : -1) \
+        /* <IMPDEF expression> */
 #define PSA_HASH_MAX_SIZE  /* <IMPDEF constant> */
 #define PSA_MAC_MAX_SIZE  PSA_HASH_MAX_SIZE
 #define PSA_AEAD_TAG_LENGTH(alg)  /* <IMPDEF expression> */

@@ -1,0 +1,10 @@
+menuconfig VENDOR_ACCEL
+    bool "Enable Vendor Accel implementation"
+
+if VENDOR_ACCEL
+    config VENDOR_ACCEL_SHA2_256
+        bool "Use vendor/accel SHA-256 implementation"
+        depends on SHA2 || SHA2_256
+        default n
+        select HAVE_SHA2_256
+endif

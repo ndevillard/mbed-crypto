@@ -1,5 +1,6 @@
-
 #include "psa/crypto.h"
+
+#include "autoconf.h"
 
 psa_status_t psa_hash_compute(psa_algorithm_t alg,
                               const uint8_t * input,
@@ -22,6 +23,8 @@ psa_status_t psa_hash_compare(psa_algorithm_t alg,
 
 psa_hash_operation_t psa_hash_operation_init(void)
 {
+    psa_hash_operation_t r;
+    return r;
 }
 
 psa_status_t psa_hash_setup(psa_hash_operation_t * operation,

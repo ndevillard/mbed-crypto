@@ -1,0 +1,1 @@
+psa_crypto_sources_ifdef(CONFIG_ARM_MBEDTLS_SHA2_256 sha256.c)

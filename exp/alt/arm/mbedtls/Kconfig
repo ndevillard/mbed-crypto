@@ -1,0 +1,10 @@
+menuconfig ARM_MBEDTLS
+    bool "Enable Arm MbedTLS implementation"
+
+if ARM_MBEDTLS
+    config ARM_MBEDTLS_SHA2_256
+        bool "Use arm/mbedtls SHA-256 implementation"
+        depends on SHA2 || SHA2_256
+        select HAVE_SHA2_256
+        default n
+endif

@@ -4,9 +4,10 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 #include "psa/crypto.h"
-#include "aliases.h"
 
 #define HASH_SZ PSA_HASH_SIZE(PSA_ALG_SHA_256)
 
@@ -17,7 +18,7 @@ int compute_sha(char * filename, uint8_t * h)
     int         fd ;
     size_t      written;
 
-    psa_hash_operation_t    ctx ;
+    // psa_hash_operation_t    ctx ;
 
     /* Mmap input file */
     if (stat(filename, &fileinfo)!=0) {
@@ -41,7 +42,7 @@ int compute_sha(char * filename, uint8_t * h)
     }
 
     /* Compute SHA */
-    memset(&ctx, 0, sizeof(psa_hash_operation_t));
+    // memset(&ctx, 0, sizeof(psa_hash_operation_t));
     psa_hash_compute(PSA_ALG_SHA_256,
                      buf,
                      fileinfo.st_size,

@@ -1,0 +1,28 @@
+mainmenu "PSA Crypto API"
+
+choice
+     prompt "Operating System"
+
+config OS_POSIX
+     bool "POSIX-like (Linux/BSD/Mac)"
+
+config OS_MBEDOS
+     bool "Mbed OS"
+
+endchoice
+
+menuconfig HASH_ALGORITHMS
+    bool "Support hash / message digests"
+    default y
+
+if HASH_ALGORITHMS
+    config SHA2
+        bool "Support SHA2 Algorithm"
+        default y
+endif
+
+config HAVE_SHA2_256
+    bool
+
+source "alt/Kconfig"
+

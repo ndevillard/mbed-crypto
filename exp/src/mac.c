@@ -24,6 +24,8 @@ psa_status_t psa_mac_verify(psa_key_handle_t handle,
 
 psa_mac_operation_t psa_mac_operation_init(void)
 {
+    psa_mac_operation_t r;
+    return r;
 }
 
 psa_status_t psa_mac_sign_setup(psa_mac_operation_t * operation,
