@@ -1,0 +1,68 @@
+
+Top-level configuration for PSA Crypto Library
+
+Topics should be available by crypto domain: hash, cipher, asymmetric
+For each topic, a list of candidate functions must be available.
+For each candidate function, several options are possible: 
+    - Reference implementation (default), optimized for legibility
+    - Formally-proven implementation if available
+    - Optimized for minimal flash or RAM size, if available
+    - Accelerated by hardware
+    - Delegated to secure element
+
+This probably implies that secure elements and hardware accelerators are
+configured separately so they automatically show up in the right places in
+PSA.
+
+Do we need to tag implementations to they appear in configuration choices
+as [] Legible [] Optimized for speed on Arm, etc.?
+
+Make menuconfig should appear like this:
+
+Topics
+    Low-level routines
+        [ ] Hash functions
+            [ ] SHA-1
+                [ ] Use reference implementation
+                [ ] Use formally-proven implementation
+                [ ] Optimized for minimal flash size
+                [ ] Optimized for minimal RAM usage
+                [ ] Use NEON acceleration (Arm)
+                [ ] Accelerated by XXX
+                [ ] ...
+            [ ] SHA-2 224
+            [ ] SHA-2 256
+            ...
+
+        [ ] Symmetric Ciphers
+            [ ] AES
+            [ ] 3DES
+            [ ] CAMELIA
+            ...
+
+        [ ] Asymmetric
+            [ ] RSA-1024
+            [ ] RSA-2048
+            [ ] RSA-3072
+            [ ] Ed25519
+            ...
+    
+    Constructs
+        [ ] MAC
+            -> Select which hash functions to apply to
+        [ ] HMAC
+            -> Select which hash functions to apply to
+        [ ] AEAD
+            -> Select with cipher/hash functions to apply to
+        [ ] Asymmetric signature
+            -> Select hash and padding
+
+
+Could also have a higher-level configuration that tries to pick the best
+options overall for a given use case, e.g.
+- I need TLS PSK with AES-128 accelerated by Arm instructions
+- I need AES-256 and SHA2 for secure storage
+- ...
+
+
+
