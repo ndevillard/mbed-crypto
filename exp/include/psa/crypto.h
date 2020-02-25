@@ -10,15 +10,12 @@
  */
 typedef unsigned psa_key_handle_t;
 typedef struct psa_key_attributes_s psa_key_attributes_t;
-typedef struct psa_hash_operation_s psa_hash_operation_t;
 typedef struct psa_mac_operation_s psa_mac_operation_t;
 typedef struct psa_cipher_operation_s psa_cipher_operation_t;
 typedef struct psa_aead_operation_s psa_aead_operation_t;
 typedef struct psa_key_derivation_s psa_key_derivation_operation_t;
 
-
 struct psa_key_attributes_s {};
-struct psa_hash_operation_s {};
 struct psa_mac_operation_s {};
 struct psa_cipher_operation_s {};
 struct psa_aead_operation_s {};
@@ -114,7 +111,6 @@ typedef uint32_t psa_algorithm_t;
 #define PSA_KEY_TYPE_IS_DH_PUBLIC_KEY(type)  /* <IMPDEF expression> */
 #define PSA_KEY_TYPE_GET_GROUP(type)  /* <IMPDEF expression> */
 #define PSA_BLOCK_CIPHER_BLOCK_SIZE(type)  /* <IMPDEF expression> */
-#define PSA_ALG_IS_HASH(alg)  /* <IMPDEF expression> */
 #define PSA_ALG_IS_MAC(alg)  /* <IMPDEF expression> */
 #define PSA_ALG_IS_CIPHER(alg)  /* <IMPDEF expression> */
 #define PSA_ALG_IS_AEAD(alg)  /* <IMPDEF expression> */
@@ -122,17 +118,6 @@ typedef uint32_t psa_algorithm_t;
 #define PSA_ALG_IS_ASYMMETRIC_ENCRYPTION(alg)  /* <IMPDEF expression> */
 #define PSA_ALG_IS_KEY_AGREEMENT(alg)  /* <IMPDEF expression> */
 #define PSA_ALG_IS_KEY_DERIVATION(alg)  /* <IMPDEF expression> */
-#define PSA_ALG_SHA_224  ((psa_algorithm_t)0x01000008)
-#define PSA_ALG_SHA_256  ((psa_algorithm_t)0x01000009)
-#define PSA_ALG_SHA_384  ((psa_algorithm_t)0x0100000a)
-#define PSA_ALG_SHA_512  ((psa_algorithm_t)0x0100000b)
-#define PSA_ALG_SHA_512_224  ((psa_algorithm_t)0x0100000c)
-#define PSA_ALG_SHA_512_256  ((psa_algorithm_t)0x0100000d)
-#define PSA_ALG_SHA3_224  ((psa_algorithm_t)0x01000010)
-#define PSA_ALG_SHA3_256  ((psa_algorithm_t)0x01000011)
-#define PSA_ALG_SHA3_384  ((psa_algorithm_t)0x01000012)
-#define PSA_ALG_SHA3_512  ((psa_algorithm_t)0x01000013)
-#define PSA_ALG_ANY_HASH  ((psa_algorithm_t)0x010000ff)
 #define PSA_ALG_HMAC(hash_alg)  /* <IMPDEF expression> */
 #define PSA_ALG_IS_HMAC(alg)  /* <IMPDEF expression> */
 #define PSA_ALG_TRUNCATED_MAC(mac_alg, mac_length)  /* <IMPDEF expression> */
@@ -199,10 +184,6 @@ typedef uint16_t psa_key_derivation_step_t;
 #define PSA_KEY_DERIVATION_INPUT_SALT  ((psa_key_derivation_step_t)0x0202)
 #define PSA_KEY_DERIVATION_INPUT_INFO  ((psa_key_derivation_step_t)0x0203)
 #define PSA_KEY_DERIVATION_INPUT_SEED  ((psa_key_derivation_step_t)0x0204)
-#define PSA_HASH_SIZE(alg)  \
-    ((alg == PSA_ALG_SHA_256) ? 32 : -1) \
-        /* <IMPDEF expression> */
-#define PSA_HASH_MAX_SIZE  /* <IMPDEF constant> */
 #define PSA_MAC_MAX_SIZE  PSA_HASH_MAX_SIZE
 #define PSA_AEAD_TAG_LENGTH(alg)  /* <IMPDEF expression> */
 #define PSA_ECC_CURVE_BITS(curve)  /*...*/
@@ -316,52 +297,6 @@ psa_status_t psa_copy_key(
     psa_key_handle_t source_handle,
     const psa_key_attributes_t * attributes,
     psa_key_handle_t * target_handle);
-
-/** Hash */
-#define PSA_HASH_OPERATION_INIT  /* <IMPDEF constant> */
-
-psa_status_t psa_hash_compute(
-    psa_algorithm_t alg,
-    const uint8_t * input,
-    size_t input_length,
-    uint8_t * hash,
-    size_t hash_size,
-    size_t * hash_length);
-
-psa_status_t psa_hash_compare(
-    psa_algorithm_t alg,
-    const uint8_t * input,
-    size_t input_length,
-    const uint8_t * hash,
-    const size_t hash_length);
-
-psa_hash_operation_t psa_hash_operation_init(void);
-
-psa_status_t psa_hash_setup(
-    psa_hash_operation_t * operation,
-    psa_algorithm_t alg);
-
-psa_status_t psa_hash_update(
-    psa_hash_operation_t * operation,
-    const uint8_t * input,
-    size_t input_length);
-
-psa_status_t psa_hash_finish(
-    psa_hash_operation_t * operation,
-    uint8_t * hash,
-    size_t hash_size,
-    size_t * hash_length);
-
-psa_status_t psa_hash_verify(
-    psa_hash_operation_t * operation,
-    const uint8_t * hash,
-    size_t hash_length);
-
-psa_status_t psa_hash_abort(psa_hash_operation_t * operation);
-
-psa_status_t psa_hash_clone(
-    const psa_hash_operation_t * source_operation,
-    psa_hash_operation_t * target_operation);
 
 /** MAC */
 #define PSA_MAC_OPERATION_INIT  /* <IMPDEF constant> */
@@ -670,5 +605,6 @@ psa_status_t psa_generate_key(
     const psa_key_attributes_t * attributes,
     psa_key_handle_t * handle);
 
+#include "crypto/hash.h"
 
 #endif

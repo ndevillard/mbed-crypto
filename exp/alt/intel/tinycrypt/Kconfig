@@ -1,0 +1,10 @@
+menuconfig INTEL_TINYCRYPT
+    bool "Enable tinycrypt implementation"
+
+if INTEL_TINYCRYPT
+    config INTEL_TINYCRYPT_SHA2_256
+        bool "Use tinycrypt SHA-256 implementation"
+        depends on SHA2 || SHA2_256
+        default n
+        select HAVE_SHA2_256
+endif

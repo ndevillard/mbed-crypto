@@ -32,8 +32,5 @@ if(NOT "${ret}" STREQUAL "0")
   message(FATAL_ERROR "command failed with return code: ${ret}")
 endif()
 
-
 # Parse the lines prefixed with CONFIG_ in the .config file from Kconfig
 import_kconfig(CONFIG_ ${DOTCONFIG})
-
-

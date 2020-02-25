@@ -20,6 +20,7 @@ set(CMAKE_CXX_COMPILER_FORCED 1)
 add_library(psa_crypto)
 
 target_include_directories(psa_crypto PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(psa_crypto PUBLIC ${PROJECT_SOURCE_DIR}/alt)
 target_include_directories(psa_crypto PUBLIC ${PROJECT_BINARY_DIR}/kconfig/include/generated)
 
 target_sources(psa_crypto PRIVATE
@@ -37,6 +38,7 @@ include(${PSA_CRYPTO_BASE}/cmake/extensions.cmake)
 include(${PSA_CRYPTO_BASE}/cmake/kconfig.cmake)
 
 add_subdirectory_ifdef(CONFIG_ARM_MBEDTLS ${CMAKE_SOURCE_DIR}/alt/arm/mbedtls)
+add_subdirectory_ifdef(CONFIG_INTEL_TINYCRYPT ${CMAKE_SOURCE_DIR}/alt/intel/tinycrypt)
 add_subdirectory_ifdef(CONFIG_VENDOR_ACCEL ${CMAKE_SOURCE_DIR}/alt/vendor/accel)
 
 add_executable(sha2sum main/sha2sum.c)

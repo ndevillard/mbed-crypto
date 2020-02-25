@@ -12,5 +12,4 @@ int vendor_accel_sha256_compute(
     size_t    hash_sz,
     size_t  * hash_written);
 
-
 #endif

@@ -1,2 +1,3 @@
 source "alt/arm/mbedtls/Kconfig"
+source "alt/intel/tinycrypt/Kconfig"
 source "alt/vendor/accel/Kconfig"
