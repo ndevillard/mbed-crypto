@@ -32,5 +32,16 @@ if(NOT "${ret}" STREQUAL "0")
   message(FATAL_ERROR "command failed with return code: ${ret}")
 endif()
 
+# Force CMAKE configure when the Kconfig sources or configuration files changes.
+foreach(kconfig_input
+    ${merge_config_files}
+    ${DOTCONFIG}
+    ${PARSED_KCONFIG_SOURCES_LIST}
+    )
+  set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${kconfig_input})
+endforeach()
+
+add_custom_target(config-sanitycheck DEPENDS ${DOTCONFIG})
+
 # Parse the lines prefixed with CONFIG_ in the .config file from Kconfig
 import_kconfig(CONFIG_ ${DOTCONFIG})
